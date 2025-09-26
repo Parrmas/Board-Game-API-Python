@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: fastapi-api-project
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_NAME
+        value: FastAPIProject
+      - key: APP_ENV
+        value: production
+      - key: APP_PORT
+        value: 8000
+      - key: API_URL
+        value: https://board-game-api-dy10.onrender.com/api
+      - key: MONGO_URI
+        sync: false # set securely in Render dashboard
+      - key: MONGO_DB_NAME
+        value: mydatabase
+      - key: JWT_SECRET
+        sync: false # set securely in Render dashboard
+      - key: JWT_ALGORITHM
+        value: HS256
+      - key: JWT_EXPIRE_MINUTES
+        value: 60
